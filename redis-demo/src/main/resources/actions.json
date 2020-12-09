@@ -14,8 +14,6 @@
         ]
       }
     },
-
-
     {
       "actionname": "readcount",
       "actionIndex": 2,
@@ -42,8 +40,6 @@
         "counter": [
         ]
       }
-
-
     }
 
 

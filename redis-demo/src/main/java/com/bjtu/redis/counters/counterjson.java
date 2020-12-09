@@ -20,14 +20,12 @@ public class counterjson {
     private void initCounter(){
         try {
             String counterName = counter.counterName;
-
             ClassLoader loader = FileUtil.class.getClassLoader();
             InputStream stream = loader.getResourceAsStream("counters.json");
             assert stream != null;
             String text = IOUtils.toString(stream, "utf8");
             JSONObject jsonObject = JSONObject.parseObject(text);
             JSONArray array = jsonObject.getJSONArray("counters");
-
             for (int i = 0; i < array.size(); i++) {
                 JSONObject jo = array.getJSONObject(i);
                 String an = jo.getString("countername");

@@ -18,7 +18,6 @@ public class Resolver {
     com.bjtu.redis.action.action action;
     private final ArrayList<String> readCounter;
     private final ArrayList<String> writeCounter;
-
     private final ArrayList<counter> readCounterObj;
     private final ArrayList<counter> writeCounterObj;
 
@@ -31,24 +30,8 @@ public class Resolver {
         initCounters();
     }
 
-    private void initCounters(){
-        for(String readName:readCounter){
-            counter counter = new counter(readName);
-            new counterjson(counter);
-            readCounterObj.add(counter);
-        }
-        for(String writeName:writeCounter){
-            counter counter = new counter(writeName);
-            new counterjson(counter);
-            writeCounterObj.add(counter);
-        }
-    }
-
-    /*
-    根据Counter数组进行操作
-     */
     public void solver(){
-        //读所有的read counter
+
         for(counter counter : readCounterObj){
             switch (counter.type){
                 case "num":
@@ -56,18 +39,15 @@ public class Resolver {
                     break;
                 case "hash":
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH");
-                    System.out.print("begin time>>");
+                    System.out.print("begin time(yyyy-MM-dd HH)>>");
                     Scanner ms = new Scanner(System.in);
                     String begin = ms.nextLine();
-                    System.out.print("end time>>");
+                    System.out.print("end time(yyyy-MM-dd HH)>>");
                     Scanner ms2 = new Scanner(System.in);
                     String end = ms2.nextLine();
-
                     try {
                         Date from = format.parse(begin);
                         Date to = format.parse(end);
-
-                        //得到time-valueField的哈希表
                         Map<String,String> map = Jedisutil.getHashMap(counter.key);
                         Set<String> keys = map.keySet();
                         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -106,6 +86,17 @@ public class Resolver {
         }
     }
 
-
+    private void initCounters(){
+        for(String readName:readCounter){
+            counter counter = new counter(readName);
+            new counterjson(counter);
+            readCounterObj.add(counter);
+        }
+        for(String writeName:writeCounter){
+            counter counter = new counter(writeName);
+            new counterjson(counter);
+            writeCounterObj.add(counter);
+        }
+    }
 }
 
