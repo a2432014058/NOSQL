@@ -3,7 +3,7 @@ package com.bjtu.redis;
 import com.bjtu.redis.action.action;
 import com.bjtu.redis.action.actionjson;
 
-import com.bjtu.redis.tools.Resolver;
+import com.bjtu.redis.tools.tool;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -26,35 +26,31 @@ public class RedisDemoApplication {
         int num=1;
         while(true) {
             System.out.println(num+ ". Please Choose Your Next Action:");
-            System.out.println("\t A. 增加count \t B. 读出count值 \t C.读取freq \t D.退出");
+            System.out.println("\t A. 增加count \t B. 读出count \t C.freq \t D.退出");
             System.out.print("USER>>");
             Scanner ms = new Scanner(System.in);
             String ch = ms.nextLine();
             if(!ch.equals("A")&&!ch.equals("B")&&!ch.equals("C")&&!ch.equals("D")){
                 System.out.println("\t 输入格式错误，请输入A或B或C或D！");
             }else{
-                //输入正确，执行action
                 switch (ch){
                     case "A":
-                        System.out.println("Action执行Action:pluscount");
-                        actionjson j1 = new actionjson(new action("pluscount"));
-                        Resolver da1 = new Resolver(j1);
-                        da1.solver();
+                        System.out.println("pluscount");
+                        tool r1 = new tool(new actionjson(new action("pluscount")));
+                        r1.solver();
                         break;
                     case "B":
-                        System.out.println("Action执行Action:readcount");
-                        actionjson j2 = new actionjson(new action("readcount"));
-                        Resolver da2 = new Resolver(j2);
-                        da2.solver();
+                        System.out.println("readcount");
+                        tool r2 = new tool( new actionjson(new action("readcount")));
+                        r2.solver();
                         break;
                     case "C":
-                        System.out.println("Action执行Action:readfreq");
-                        actionjson j3 = new actionjson(new action("readfreq"));
-                        Resolver da3 = new Resolver(j3);
-                        da3.solver();
+                        System.out.println("readfreq");
+                        tool r3 = new tool(new actionjson(new action("readfreq")));
+                        r3.solver();
                         break;
                     case "D":
-                        System.out.println("Action执行Action:exit");
+                        System.out.println("exit");
                         return;
                     default:
                         break;

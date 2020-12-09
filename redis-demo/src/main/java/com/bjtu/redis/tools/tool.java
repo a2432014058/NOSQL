@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Resolver {
+public class tool {
 
     com.bjtu.redis.action.action action;
     private final ArrayList<String> readCounter;
@@ -21,7 +21,7 @@ public class Resolver {
     private final ArrayList<counter> readCounterObj;
     private final ArrayList<counter> writeCounterObj;
 
-    public Resolver(actionjson jsh){
+    public tool(actionjson jsh){
         this.action=jsh.getAction();
         readCounter=jsh.getReadCounter();
         writeCounter=jsh.getWriteCounter();
